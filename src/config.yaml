@@ -1,0 +1,25 @@
+# Configuration File
+
+data_paths:
+  raw:
+    city: "../datasets/City.xlsx"
+    continent: "../datasets/Continent.xlsx"
+    country: "../datasets/Country.xlsx"
+    item: "../datasets/Item.xlsx"
+    mode: "../datasets/Mode.xlsx"
+    region: "../datasets/Region.xlsx"
+    transaction: "../datasets/Transaction.xlsx"
+    type: "../datasets/Type.xlsx"
+    user: "../datasets/User.xlsx"
+  
+  processed:
+    raw_merged: "../processed_data/raw_merged.csv"
+    modeling_ready: "../processed_data/modeling_ready_data.csv"
+
+model_paths:
+  classification_model: "../models/classification_model.pkl"
+  regression_model: "../models/regression_model.pkl"
+  recommender_system: "../models/recommender.pkl"
+
+app:
+  title: "Tourism Experience Analytics"
