@@ -80,3 +80,55 @@ This document serves as the comprehensive log of actions, methodologies, and res
     *   *Encoding:* Applied `LabelEncoder` to all categorical string features (e.g., `UserCity`, `Attraction`, `VisitSeason`). Label Encoding was chosen over One-Hot Encoding to prevent massive dimensionality expansion (e.g., preventing the 5,500+ unique cities from creating 5,500+ new columns).
     *   *Scaling:* Applied `StandardScaler` to all 14 numerical features (excluding target variables and IDs). This ensures features like `AttractionPopularity` (in the thousands) don't dominate features like `UserAvgRating` (1 to 5) simply due to magnitude.
 *   **Results:** The entire dataset was successfully transformed. The final, machine-learning-ready output was permanently saved to disk as `processed_data/modeling_ready_data.csv`. Phase 2 is officially complete.
+
+---
+
+## Phase 3: Exploratory Data Analysis (EDA)
+
+### Step 3.1: Univariate Analysis
+*   **Action:** Visualized the individual distributions of target variables, engineered numerical features, and key categorical factors.
+*   **Implementation:** Developed `notebooks/02_EDA.ipynb`. Used `matplotlib` and `seaborn` to generate insights and automatically saved plots to `assets/eda_plots/`.
+
+**1. Target Variables**
+*Rating (Regression Target)* is heavily skewed towards 4 and 5, indicating generally positive tourist experiences. *VisitModeName (Classification Target)* shows that 'Friends' and 'Family' are the most common tourist demographic groups.
+![Rating Distribution](assets/eda_plots/target_rating.png)
+![Visit Mode Distribution](assets/eda_plots/target_visitmode.png)
+
+**2. Numerical Features**
+The distributions for our engineered User and Attraction statistics. Popularity follows a heavy long-tail distribution.
+![Numerical Features](assets/eda_plots/numerical_features.png)
+
+**3. Categorical Features**
+Seasonal distribution and the top 10 origin countries of our tourists. We can see a strong preference for late Summer/Fall travel.
+![Season Distribution](assets/eda_plots/categorical_season.png)
+![Top Countries](assets/eda_plots/categorical_countries.png)
+
+### Step 3.2: Bivariate & Multivariate Analysis
+*   **Action:** Analyzed relationships between multiple variables to uncover deeper business insights.
+*   **Implementation:** Expanded `notebooks/02_EDA.ipynb` to include cross-feature visualizations.
+
+**1. Visit Mode Preferences by Continent**
+This chart shows how different continents prefer different visit modes.
+![Visit Mode by Continent](assets/eda_plots/bivariate_continent_visitmode.png)
+
+**2. Attraction Type Popularity Across Top Regions**
+This visualization breaks down what types of attractions are most popular in the top 5 tourist origin regions.
+![Attraction Type by Region](assets/eda_plots/bivariate_region_attractiontype.png)
+
+**3. Attraction Ratings Across Different Seasons**
+A boxplot analyzing if the season influences the final rating tourists give.
+![Ratings by Season](assets/eda_plots/bivariate_season_rating.png)
+
+**4. Correlation Matrix of Numerical Features**
+A heatmap showing the mathematical correlations between our numerical variables (e.g., highly rated attractions tend to maintain high ratings).
+![Correlation Matrix](assets/eda_plots/multivariate_correlation.png)
+
+### Step 3.3: Business Insight Generation
+*   **Action:** Synthesized visual data into actionable business intelligence.
+*   **Implementation:** Reviewed EDA plots to address core project use cases.
+
+**Key Findings:**
+1. **Dominant Customer Segments:** The vast majority of tourists travel as "Friends" or "Family." Business and Solo travel make up a much smaller segment. *Actionable Insight:* Marketing and recommendation strategies should prioritize group-friendly activities and family packages.
+2. **Tourism Hotspots & Long-Tail Distribution:** A small number of top-tier attractions receive the bulk of visits (high Popularity score), while a "long tail" of attractions receives far fewer. *Actionable Insight:* The Recommender System (Phase 5) must balance suggesting famous "Hotspots" with highly-rated but lesser-known "Niche" attractions to disperse tourist traffic.
+3. **Seasonal Resource Allocation:** Travel heavily peaks in the late Summer and Fall. *Actionable Insight:* Operational resources, staffing, and promotional campaigns should be maximized during these peak seasons.
+4. **Geographical Variability:** There are distinct shifts in what types of attractions are visited depending on the tourist's origin continent and region. *Actionable Insight:* This confirms that integrating demographic features (`UserCountry`, `UserContinent`) into our ML models will significantly increase predictive accuracy for personalized recommendations.
