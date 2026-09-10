@@ -13,6 +13,7 @@ __pycache__/
 datasets/
 processed_data/*
 !processed_data/modeling_ready_data.csv
+!processed_data/raw_merged.csv
 # Notebooks
 .ipynb_checkpoints/
 
