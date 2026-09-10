@@ -11,7 +11,8 @@ __pycache__/
 
 # Datasets and Models
 datasets/
-processed_data/
+processed_data/*
+!processed_data/modeling_ready_data.csv
 # Notebooks
 .ipynb_checkpoints/
 
