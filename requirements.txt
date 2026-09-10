@@ -8,3 +8,6 @@ openpyxl
 streamlit
 jupyter
 pyyaml
+psycopg2-binary
+bcrypt
+python-dotenv

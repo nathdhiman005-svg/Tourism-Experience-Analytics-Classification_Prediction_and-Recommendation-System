@@ -12,8 +12,6 @@ __pycache__/
 # Datasets and Models
 datasets/
 processed_data/
-models/
-
 # Notebooks
 .ipynb_checkpoints/
 
@@ -25,3 +23,5 @@ models/
 # macOS
 .DS_Store
 
+# Environment Variables
+.env
